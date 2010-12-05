@@ -17,6 +17,7 @@ def show_product(request, product_id, template_name="shop/product.html"):
 
 def show_cart(request, template_name="shop/cart.html"):
     cart_items = cart.get_cart_items(request)
+    cart_total = cart.get_cart_total(request)
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 def add_to_cart(request):

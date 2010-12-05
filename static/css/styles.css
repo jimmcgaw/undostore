@@ -94,6 +94,10 @@ table#shopping_cart td a{
     color:maroon;
 }
 
+table#shopping_cart tfoot{
+    font-weight:bold;
+}
+
 div.product{
     padding:5px;
     width:148px;
