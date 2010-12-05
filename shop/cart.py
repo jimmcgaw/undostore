@@ -15,6 +15,9 @@ def get_cart_id(request):
 def get_cart_items(request):
     return CartItem.objects.filter(cart_id=get_cart_id(request)).select_related('product')
 
+def get_cart_total(request):
+    return sum([ci.total for ci in get_cart_items(request)])
+
 def add_to_cart(request):
     """ adds product to the shopping cart; expects request to contain POST data,
     which should contain product_id
