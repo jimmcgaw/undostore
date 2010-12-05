@@ -1,0 +1,10 @@
+<tr class="removed_item">
+    <td colspan="5">
+        "{{ product_name }}" has been removed from your cart. 
+        <form action="{% url undo_remove_item %}">
+            <input type="hidden" name="" value="" />
+            <input type="submit" class="button" value="Undo" />
+            {% csrf_token %}
+        </form>
+    </td>
+</tr>
