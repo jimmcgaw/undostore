@@ -41,10 +41,14 @@ def remove_cart_item(request):
         if cart_item_id:
             item_removed = cart.remove_cart_item(request, cart_item_id)
     if request.is_ajax():
-        data = { 'item_removed': item_removed }
+        data = { 'item_removed': item_removed,
+                 'cart_tfoot': render_cart_tfoot(request) }
         json = simplejson.dumps(data)
         return HttpResponse(json, content_type="application/json")
     else:
         cart_url = urlresolvers.reverse('cart')
         return HttpResponseRedirect(cart_url)
 
+def render_cart_tfoot(request, template_name="shop/cart_footer.html"):
+    cart_total = cart.get_cart_total(request)
+    return render_to_string(template_name, locals())
