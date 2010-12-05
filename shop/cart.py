@@ -37,9 +37,12 @@ def add_to_cart(request):
         cart_item.save()
             
 def remove_cart_item(request, cart_item_id):
+    item_removed = False
     cart_id = get_cart_id(request)
     try:
         cart_item = CartItem.objects.get(id=cart_item_id, cart_id=cart_id)
         cart_item.delete()
-    except CartItem.DoesNotExist:
+        item_removed = True
+    except:
         pass
+    return item_removed

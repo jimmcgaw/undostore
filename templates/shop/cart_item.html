@@ -7,7 +7,7 @@
             <input type="hidden" name="cart_item_id" value="{{ item.id }}" />
             <input type="submit" class="button" value="Remove" />
             {% csrf_token %}
-        <form>
+        </form>
     </td>
     <td>
         ${{ item.product.price }}
