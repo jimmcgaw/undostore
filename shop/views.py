@@ -28,10 +28,11 @@ def add_to_cart(request):
     return HttpResponseRedirect(cart_url)
 
 def remove_cart_item(request):
+    item_removed = False
     if request.method == 'POST':
         postdata = request.POST.copy()
         cart_item_id = postdata.get('cart_item_id', '')
         if cart_item_id:
-            cart.remove_cart_item(request, cart_item_id)
+            item_removed = cart.remove_cart_item(request, cart_item_id)
     cart_url = urlresolvers.reverse('cart')
     return HttpResponseRedirect(cart_url)
