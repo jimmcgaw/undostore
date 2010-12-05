@@ -107,6 +107,7 @@ div.product{
     margin-right:10px;
     font-size:14px;
     line-height:22px;
+    margin-bottom:15px;
 }
 
 div.product a{
@@ -118,6 +119,15 @@ div.product a{
 
 div.product a:hover{
     text-decoration:underline;
+}
+
+div.description{
+    width:450px;
+}
+
+div.description h4{
+    text-decoration:underline;
+    margin-bottom:8px;
 }
 
 input.button{

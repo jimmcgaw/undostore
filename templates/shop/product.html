@@ -13,9 +13,10 @@
     <input type="submit" class="button" value="Add To Cart" />
     {% csrf_token %}
 </form>
-<br /><br />
-<strong>Description</strong>
 <br />
+<div class="description">
+<h4>Description</h4>
 <p>{{ product.description }}</p>
+</div>
 
 {% endblock %}
