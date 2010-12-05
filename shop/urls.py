@@ -6,4 +6,5 @@ urlpatterns = patterns('undostore.shop.views',
     (r'^cart/$', 'show_cart', {'template_name': 'shop/cart.html' }, 'cart'),
     (r'^add/to/cart/$', 'add_to_cart', {}, 'add_to_cart' ),
     (r'^remove/cart/item/$', 'remove_cart_item', {}, 'remove_cart_item' ),
+    (r'^restore/removed/item/$', 'restore_removed_item', {}, 'restore_removed_item' ),
 )

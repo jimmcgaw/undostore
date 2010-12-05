@@ -49,6 +49,19 @@ def remove_cart_item(request):
         cart_url = urlresolvers.reverse('cart')
         return HttpResponseRedirect(cart_url)
 
+
+def restore_removed_item(request):
+    item_restored = False
+    if request.is_ajax() and request.method == 'POST':
+        
+        data = {}
+        json = simplejson.dumps(data)
+        return HttpResponse(json, content_type="application/json")
+    # if we get a request to this that isn't an Ajax POST, just redirect to cart page
+    cart_url = urlresolvers.reverse('cart')
+    return HttpResponseRedirect(cart_url)
+
 def render_cart_tfoot(request, template_name="shop/cart_footer.html"):
     cart_total = cart.get_cart_total(request)
     return render_to_string(template_name, locals())
+
