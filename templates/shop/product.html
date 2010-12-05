@@ -1,0 +1,21 @@
+{% extends "undostore.html" %}
+
+{% block content %}
+
+<h2>{{ product.name }}</h2>
+<br />
+<p>Publisher: {{ product.publisher }}</p>
+<br />
+<p>Price: {{ product.price }}</p>
+<br />
+<form action="{% url add_to_cart %}" method="post">
+    <input type="hidden" name="product_id" value="{{ product.id }}" />
+    <input type="submit" class="button" value="Add To Cart" />
+    {% csrf_token %}
+</form>
+<br /><br />
+<strong>Description</strong>
+<br />
+<p>{{ product.description }}</p>
+
+{% endblock %}

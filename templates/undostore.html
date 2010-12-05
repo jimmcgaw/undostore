@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+    
+<div id="middle">
+    <header>
+        <h1>Django Undo Store</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="{% url home %}">Home</a></li>
+            <li><a href="{% url cart %}">Cart</a></li>
+        </ul>
+    </nav>
+    
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <div style="clear:both;"><br /></div>
+    
+    <footer>
+        Copyright &copy; {% now "Y" %}. A Jim McGaw Production 
+        <br />
+        (eat your heart out, Zuckerberg)
+    </footer>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "undostore.html" %}
+
+{% block content %}
+
+<h2>Your Shopping Cart</h2>
+<br />
+<table id="shopping_cart" cellpadding="0" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th class="right">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+            {% include "shop/cart_item.html" %}
+        {% endfor %}
+    </tbody>
+    <tfoot>
+    
+    </tfoot>
+</table>
+
+{% endblock %}

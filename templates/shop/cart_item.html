@@ -1,0 +1,21 @@
+<tr class="cart_item">
+    <td>
+        <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+    </td>
+    <td>
+        <form action="{% url remove_cart_item %}" method="post">
+            <input type="hidden" name="cart_item_id" value="{{ item.id }}" />
+            <input type="submit" class="button" value="Remove" />
+            {% csrf_token %}
+        <form>
+    </td>
+    <td>
+        ${{ item.product.price }}
+    </td>
+    <td>
+        {{ item.quantity }}
+    </td>
+    <td class="right">
+        ${{ item.total }}
+    </td>
+</tr>
