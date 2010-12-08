@@ -14,14 +14,7 @@ def get_cart_id(request):
 
 def get_cart_items(request):
     return CartItem.objects.filter(cart_id=get_cart_id(request)).select_related('product')
-
-def get_cart_item(request, cart_item_id):
-    try:
-        cart_id = get_cart_id(request)
-        cart_item = CartItem.objects.get(id=cart_item_id, cart_id=cart_id)
-        return cart_item
-    except:
-        return None
+    
 
 def get_cart_total(request):
     return sum([ci.total for ci in get_cart_items(request)])
@@ -49,8 +42,11 @@ def add_to_cart(request):
             
 def remove_cart_item(request, cart_item_id):
     item_removed = False
-    cart_item = get_cart_item(request, cart_item_id)
-    if cart_item:
+    try:
+        cart_id = get_cart_id(request)
+        cart_item = CartItem.objects.get(id=cart_item_id, cart_id=cart_id)
         cart_item.delete()
         item_removed = True
+    except:
+        pass
     return item_removed
