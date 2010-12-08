@@ -41,9 +41,8 @@ def remove_cart_item(request):
         postdata = request.POST.copy()
         cart_item_id = postdata.get('cart_item_id', '')
         if cart_item_id:
-            undo.stow(request, cart_item)
             item_removed = cart.remove_cart_item(request, cart_item_id)
-                
+            
     if request.is_ajax():
         data = { 'item_removed': item_removed,
                  'cart_tfoot': render_cart_tfoot(request) }
