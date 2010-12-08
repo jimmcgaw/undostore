@@ -8,6 +8,8 @@ from django.utils import simplejson
 from undostore.shop.models import Product
 from undostore.shop import cart
 
+from djangoundo import undo
+
 
 def home(request, template_name="shop/home.html"):
     products = Product.objects.all()
@@ -39,7 +41,9 @@ def remove_cart_item(request):
         postdata = request.POST.copy()
         cart_item_id = postdata.get('cart_item_id', '')
         if cart_item_id:
+            undo.stow(request, cart_item)
             item_removed = cart.remove_cart_item(request, cart_item_id)
+                
     if request.is_ajax():
         data = { 'item_removed': item_removed,
                  'cart_tfoot': render_cart_tfoot(request) }
@@ -60,6 +64,12 @@ def restore_removed_item(request):
     # if we get a request to this that isn't an Ajax POST, just redirect to cart page
     cart_url = urlresolvers.reverse('cart')
     return HttpResponseRedirect(cart_url)
+
+
+def render_undo_form(request, template_name="shop/removed_item.html"):
+    
+    return render_to_string(template_name, locals())
+
 
 def render_cart_tfoot(request, template_name="shop/cart_footer.html"):
     cart_total = cart.get_cart_total(request)

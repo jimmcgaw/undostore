@@ -26,9 +26,19 @@ UndoStore.removeCartItem = function(e){
 	});
 };
 
+UndoStore.undoRemoveItem = function(e){
+	e.preventDefault();
+	
+	
+};
+
 UndoStore.prepareDocument = function(){
-	jQuery('table#shopping_cart form.remove_item').submit(function(e){
+	jQuery('table#shopping_cart form.remove_item').live('submit', function(e){
 		UndoStore.removeCartItem(e);
+	});
+	
+	jQuery('table#shopping_cart form.undo_remove').live('submit', function(e){
+		UndoStore.undoRemoveItem(e);
 	});
 };
 

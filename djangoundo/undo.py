@@ -6,7 +6,7 @@ except ImportError:
     DJANGO_UNDO_SESSION_KEY = 'undo'
     
 
-def stow(request, object):
+def stow(request, object, db_commit=True):
     if DJANGO_UNDO_SESSION_KEY not in request.session:
         request.session[DJANGO_UNDO_SESSION_KEY] = {}
     pickled_object = pickle.dumps(object)
@@ -15,8 +15,6 @@ def stow(request, object):
     object_id = str(object.id)
     undo_dict.setdefault(object_id, pickled_object)
     request.session[DJANGO_UNDO_SESSION_KEY] = undo_dict
-    
-    object.delete()
     
 
 def restore(request, object_id):
