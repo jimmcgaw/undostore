@@ -98,6 +98,11 @@ table#shopping_cart tfoot{
     font-weight:bold;
 }
 
+table#shopping_cart form.undo_remove{
+    margin-left:15px;
+    display:inline;
+}
+
 div.product{
     padding:5px;
     width:148px;

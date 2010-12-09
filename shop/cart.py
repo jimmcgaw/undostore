@@ -1,5 +1,7 @@
 from undostore.shop.models import CartItem, Product
 
+from djangoundo import undo
+
 import random
 import string
 
@@ -42,11 +44,21 @@ def add_to_cart(request):
             
 def remove_cart_item(request, cart_item_id):
     item_removed = False
+    product_name = u''
     try:
         cart_id = get_cart_id(request)
         cart_item = CartItem.objects.get(id=cart_item_id, cart_id=cart_id)
+        product_name = cart_item.product.name
+        
+        # stow the cart_item object
+        undo.stow(request, cart_item)
+        
         cart_item.delete()
         item_removed = True
     except:
         pass
-    return item_removed
+    return item_removed, product_name
+
+def restore_cart_item(request, cart_item_id):
+    cart_item = undo.restore(request, cart_item_id)
+    return cart_item

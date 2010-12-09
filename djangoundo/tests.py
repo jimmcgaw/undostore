@@ -1,23 +1,32 @@
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
+from django.contrib.auth.models import User
+from django.http import HttpRequest
+from django.contrib.sessions.backends.db import SessionStore
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+from djangoundo import undo
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
+class CrashTestDummy(object):
+    def __init__(self, id, name, job_description):
+        self.id = id
+        self.pk = id
+        self.name = name
+        self.job_description = job_description
 
->>> 1 + 1 == 2
-True
-"""}
-
+class DjangoUndoTestCase(TestCase):
+    def setUp(self):
+        self.request = HttpRequest()
+        self.request.session = SessionStore()
+        self.test_object = CrashTestDummy(1, "Bob", "Sit still")
+        
+    
+    def test_undo_stow_and_retrieve(self):
+        undo.stow(self.request, self.test_object)
+        self.failUnless(undo.DJANGO_UNDO_SESSION_KEY in self.request.session)
+        self.failUnless(self.request.session[undo.DJANGO_UNDO_SESSION_KEY][str(self.test_object.id)])
+        # check that session now contains object
+        
+        
+        object = undo.restore(self.request, self.test_object.id)
+        self.failUnlessEqual(object, self.test_object)
+        
+    
