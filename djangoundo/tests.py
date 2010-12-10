@@ -11,11 +11,18 @@ class CrashTestDummy(object):
         self.pk = id
         self.name = name
         self.job_description = job_description
+        
+    def save(self):
+        pass
+
 
 class DjangoUndoTestCase(TestCase):
     def setUp(self):
         self.request = HttpRequest()
+        self.request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
+        self.failUnless(self.request.is_ajax())
         self.request.session = SessionStore()
+        # add AJAX request header
         self.test_object = CrashTestDummy(1, "Bob", "Sit still")
         
     
@@ -23,10 +30,8 @@ class DjangoUndoTestCase(TestCase):
         undo.stow(self.request, self.test_object)
         self.failUnless(undo.DJANGO_UNDO_SESSION_KEY in self.request.session)
         self.failUnless(self.request.session[undo.DJANGO_UNDO_SESSION_KEY][str(self.test_object.id)])
-        # check that session now contains object
-        
-        
         object = undo.restore(self.request, self.test_object.id)
-        self.failUnlessEqual(object, self.test_object)
+        self.failUnless(object)
+        self.failUnlessEqual(object.name, self.test_object.name)
         
     

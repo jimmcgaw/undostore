@@ -34,6 +34,7 @@ def restore(request, object_id):
     if DJANGO_UNDO_SESSION_KEY not in request.session:
         request.session[DJANGO_UNDO_SESSION_KEY] = {}
     undo_dict = request.session[DJANGO_UNDO_SESSION_KEY]
+    object_id = str(object_id)
     pickled_object = undo_dict[object_id]
     object = pickle.loads(pickled_object)
     object.save()
