@@ -3,7 +3,6 @@
     "pk": 2, 
     "model": "shop.product", 
     "fields": {
-      "asin": "1430225351", 
       "description": "Learn how to build powerful e-commerce websites with Django, the most popular Python web framework.", 
       "publisher": "Apress", 
       "created_at": "2010-12-04 14:13:57", 
@@ -16,7 +15,6 @@
     "pk": 3, 
     "model": "shop.product", 
     "fields": {
-      "asin": "0321683919", 
       "description": "Learn how to write unit test covered JavaScript code for your projects using JsTestRunner, a Google open source test runner.", 
       "publisher": "Addison Wesley", 
       "created_at": "2010-12-04 14:15:42", 
@@ -29,7 +27,6 @@
     "pk": 4, 
     "model": "shop.product", 
     "fields": {
-      "asin": "0596807309", 
       "description": "Learn the ins and outs of setting up MySQL replication for your projects. An excellent resource written by three developers who helped develop the replication features for MySQL.", 
       "publisher": "O'Reilly", 
       "created_at": "2010-12-04 14:17:02", 
@@ -42,7 +39,6 @@
     "pk": 5, 
     "model": "shop.product", 
     "fields": {
-      "asin": "1934356476", 
       "description": "A book that covers some more advanced features of the Ruby programming language. A great resource to show seasoned programmers just how deep the rabbit hole goes.", 
       "publisher": "Pragmatic Bookshelf", 
       "created_at": "2010-12-04 14:34:42", 
@@ -55,7 +51,6 @@
     "pk": 6, 
     "model": "shop.product", 
     "fields": {
-      "asin": "0596806159", 
       "description": "Learn how to build real-time user experiences on your websites using a Python server called Tornado. You'll build a chat box in your site, work with the Twitter API, and look at how to integrate SMS into your sites.", 
       "publisher": "O'Reilly", 
       "created_at": "2010-12-04 14:39:18", 
@@ -68,7 +63,6 @@
     "pk": 7, 
     "model": "shop.product", 
     "fields": {
-      "asin": "0596806027", 
       "description": "Get up to speed quickly and remarkably painlessly on the new features of HTML5 with this overview from Mark Pilgrim. Mark, I speak for all of us when I say: write more, please.", 
       "publisher": "O'Reilly", 
       "created_at": "2010-12-04 23:18:16", 
