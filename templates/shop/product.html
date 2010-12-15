@@ -6,7 +6,7 @@
 <br />
 <p>Publisher: {{ product.publisher }}</p>
 <br />
-<p>Price: {{ product.price }}</p>
+<p>Price: ${{ product.price }}</p>
 <br />
 <form action="{% url add_to_cart %}" method="post">
     <input type="hidden" name="product_id" value="{{ product.id }}" />
