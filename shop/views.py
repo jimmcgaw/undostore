@@ -37,3 +37,4 @@ def remove_cart_item(request):
             item_removed = cart.remove_cart_item(request, cart_item_id)
     cart_url = urlresolvers.reverse('cart')
     return HttpResponseRedirect(cart_url)
+
