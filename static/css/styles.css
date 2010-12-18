@@ -1,8 +1,15 @@
-*{margin:0;padding:0;}
+*{margin:0;padding:0;} /* very basic CSS reset */
 
 body{
      background-color: #39424B;
      font-family:Monaco, sans-serif;
+}
+
+/* browsers render unknown elements as display:inline; 
+ * the following are new HTML5 elements not recognized by IE.
+ */
+header, nav, footer{
+    display:block;
 }
 
 div#middle{
@@ -25,8 +32,6 @@ header h1{
 nav{
     padding:5px;
     height:20px;
-    /* browsers render unknown elements as display:inline; */
-    display:block; 
     border-top:solid 1px #eaeaea;
     border-bottom:solid 1px #eaeaea;
 }
@@ -140,8 +145,6 @@ input.button{
 }
 
 footer{
-    /* browsers render unknown elements as display:inline; */
-    display:block;
     height:28px;
     padding:3px;
     text-align:center;

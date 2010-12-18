@@ -52,3 +52,6 @@ def remove_cart_item(request):
 def render_cart_tfoot(request, template_name="shop/cart_footer.html"):
     cart_total = cart.get_cart_total(request)
     return render_to_string(template_name, locals())
+    cart_url = urlresolvers.reverse('cart')
+    return HttpResponseRedirect(cart_url)
+
