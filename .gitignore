@@ -2,3 +2,6 @@
 .pydevproject
 *.log
 *.pyc
+bin/*
+lib/*
+include/*
