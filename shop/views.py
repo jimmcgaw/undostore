@@ -78,11 +78,11 @@ def restore_removed_item(request):
 
 
 def render_undo_row(request, product_name, cart_item_id, template_name="shop/removed_item.html"):
-    return render_to_string(template_name, locals())
+    return render_to_string(template_name, locals(), context_instance=RequestContext(request))
 
 
 def render_cart_row(request, item, template_name="shop/cart_item.html"):
-    return render_to_string(template_name, locals())
+    return render_to_string(template_name, locals(), context_instance=RequestContext(request))
 
 
 def render_cart_tfoot(request, template_name="shop/cart_footer.html"):
